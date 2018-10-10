@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Title from "./components/title";
+import ListItem from "./components/listItem";
 class App extends Component {
   state = {
     newTodo: "",
@@ -39,15 +41,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1> How to make boba at home</h1>
+        <Title title="Hot to make boba" />
         {this.state.todos.map(todo => (
-          <li key={todo}>
-            {todo + " "}
-            <input type="text" onChange={this.handleChange(todo)} />
-            <button value={todo} onClick={this.handleSubmit}>
-              Update
-            </button>
-          </li>
+          <ListItem
+            todo={todo}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
         ))}
       </div>
     );
