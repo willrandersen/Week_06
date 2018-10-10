@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Title extends React.Component {
   render() {
-    return <h3>{this.props.title}</h3>;
+    return <div>{this.props.title}</div>;
   }
 }
 
