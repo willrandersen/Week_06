@@ -1,57 +1,19 @@
-import React, { Component } from "react";
-import Title from "./components/title";
-import ListItem from "./components/listItem";
-class App extends Component {
-  state = {
-    newTodo: "",
-    todos: [
-      "Buy tea",
-      "Buy boba",
-      "Boil water",
-      "Add boba",
-      "Drain water",
-      "Add tea"
-    ],
-    edits: []
-  };
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from "./pages/home";
+import About from "./pages/about";
 
-  handleChange = todo => event => {
-    let updatedEdits = this.state.edits;
-    updatedEdits[this.state.todos.indexOf(todo)] = event.target.value;
-    this.setState({
-      edits: updatedEdits
-    });
+const App = () => (
+  <Router>
+    <div>
+      <Link to="/">Home</Link>
+      <p> </p>
+      <Link to="/about">About</Link>
 
-    console.log(this.state.edits);
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const index = this.state.todos.indexOf(event.target.value);
-    let newTodos = this.state.todos;
-    newTodos[index] = this.state.edits[index];
-    let updatedEdits = this.state.edits;
-    updatedEdits[index] = "";
-    this.setState({
-      todos: newTodos,
-      edits: updatedEdits
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <Title title="Hot to make boba" />
-        {this.state.todos.map(todo => (
-          <ListItem
-            todo={todo}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+    </div>
+  </Router>
+);
 
 export default App;
